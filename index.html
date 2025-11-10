@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI导航与搜索</title>
+       <!-- 设置 favicon -->
+      <link rel="shortcut icon" href="PIC/favicon.ico" /> 
+  <link rel="ico" href="PIC/favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="//at.alicdn.com/t/font_1230786_gdvd1b4wlz.css">
+   <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4879677_qsmgbxy4d8b.css">
+  <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+<body class="light-mode">
+    <!-- 顶部栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img src="pic/logo.png" alt="Logo">
+            <!-- 导航栏收起/展开按钮 -->
+            <button id="toggle-sidebar" class="toggle-btn">
+                <i class="fas fa-bars"></i> <!-- 默认图标为横向 -->
+            </button>
+        </div>
+        <div class="theme-switcher">
+            <button id="light-mode-btn">浅</button>
+            <button id="dark-mode-btn">深</button>
+        </div>
+    </div>
+    <style>
+        /* 添加自定义样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            background-color: #f4f4f4;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar ul {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .category-header {
+            font-weight: bold;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .copyright {
+            padding: 5px;
+            text-align: center;
+            background-color: #0eb0c9;
+            border-top: 1px solid #ccc;
+            flex-shrink: 0; /* 防止版权信息被压缩 */
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .theme-switcher button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
+    background-color: rgba(255, 255, 255, 0.2); /* 半透明背景色 */
+            cursor: pointer;
+        }
+
+        .theme-switcher button:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <ul>
+                <!-- 搜索引擎 -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-search"></i> 搜索引擎
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="/so/index.php"data-iframe>聚合搜索</a></li>
+                        <li><a href="#" data-url="https://bot.n.cn/" data-iframe>纳米Ai搜索</a></li>
+                         
+                         <li><a href="#" data-url="https://www.phind.com/" data-iframe>Phind</a></li>
+                        <li><a href="#" data-url="https://fanyi.youdao.com" data-iframe>Ai在线翻译</a></li>
+
+                          <li><a href="#" data-url="ai01/index.html" data-iframe>更多Ai导航</a></li>
+                    </ul>
+                </li>
+                <!-- 文字类AI -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-comments"></i> AI语言工具
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://yiyan.baidu.com/" data-iframe>文心一言</a></li>
+                        <li><a href="#" data-url="https://chat.deepseek.com/" >DeepSeek</a></li>
+                        <li><a href="#" data-url="https://chat.z.ai/" >Z.ai</a></li>
+                        <li><a href="#" data-url="https://kimi.moonshot.cn/" data-iframe>Kimi</a></li>
+                        <li><a href="#" data-url="https://www.doubao.com/" data-iframe>豆包</a></li>
+                        <li><a href="#" data-url="https://xinghuo.xfyun.cn/desk/" data-iframe>讯飞星火</a></li>
+                        <li><a href="#" data-url="https://chatglm.cn/">智谱清言</a></li>
+                        <li><a href="#" data-url="https://www.tiangong.cn/" data-iframe>昆仑天工</a></li>
+                        <li><a href="#" data-url="https://yuanbao.tencent.com" data-iframe>腾讯元宝</a></li>
+                        <li><a href="#" data-url="https://tongyi.aliyun.com/">通义千问</a></li>
+                        <li><a href="#" data-url="https://chatgpt.com/auth/login">ChatGPT</a></li>
+                        <li><a href="#" data-url="https://www.meta.ai/">Meta Ai</a></li>
+                        <li><a href="#" data-url="https://gemini.google.com/">Google Gemini</a></li>
+                        <li><a href="#" data-url="https://claude.ai/">Claude</a></li>
+                        <li><a href="#" data-url="https://copilot.microsoft.com/chats/pCRD4RhCR2kmouEvb5K9a">Bing Copilot</a></li>
+                    </ul>
+                </li>
+                <!-- 设计类AI -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-palette"></i> AI图像处理
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://yige.baidu.com/" data-iframe>文心一格</a></li>
+                        <li><a href="#" data-url="https://whee.com/" data-iframe>美图Whee</a></li>
+                        <li><a href="#" data-url="https://liblib.ai/" data-iframe>Liblib生图</a></li>
+                        <li><a href="#" data-url="https://raphael.app/zh" data-iframe>Liblib生图</a></li>
+                        <li><a href="#" data-url="https://www.wujieai.com/ai" data-iframe>无界Ai</a></li>
+                        <li><a href="#" data-url="https://www.gaoding.com/">稿定设计</a></li>
+                        <li><a href="#" data-url="https://www.qiyuai.net/" data-iframe>奇域绘图</a></li>
+                        <li><a href="#" data-url="https://img.logosc.cn/" data-iframe>Ai改图</a></li>
+                        <li><a href="#" data-url="https://www.wenziyun.cn/ciyun/editor" data-iframe>词云图</a></li>
+                        <li><a href="#" data-url="https://photo.baidu.com/photasy/welcome/" data-iframe>百度超能画布</a></li>
+                        <li><a href="#" data-url="https://bigjpg.com/" data-iframe>AI图片无损放大</a></li>
+                        <li><a href="#" data-url="https://sd.study.163.com" data-iframe>网易AI设计工坊</a></li>
+                        <li><a href="#" data-url="https://aigc.wondershare.cn/" data-iframe>万兴爱画</a></li>
+                        <li><a href="#" data-url="https://miaohua.sensetime.com/" >商汤秒画</a></li>
+                        <li><a href="#" data-url="https://ideogram.ai/" data-iframe>Ideogram图像生成</a></li>
+                        <li><a href="#" data-url="https://lmarena.ai/" data-iframe>Lmarena图像生成</a></li>
+                        <li><a href="#" data-url="https://www.bing.com/images/create?FORM=GENILP" data-iframe>Bing Ai绘图</a></li>
+                        <li><a href="#" data-url="https://playground.com/" data-iframe>Playground</a></li>
+                        <li><a href="#" data-url="https://www.midjourney.com/">Midjourney图像生成</a></li>
+                    </ul>
+                </li>
+                  <!-- 文案类AI -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-palette"></i> AI文案写作
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://wenku.baidu.com/ndcore/browse/aiunion?_wkts_=1737000957907&actTab=chat&t=1737000959936" data-iframe>百度文库助手</a></li>
+                        <li><a href="#" data-url="https://doc.smartread.cc/" data-iframe>司马阅ai神器</a></li>
+                         <li><a href="#" data-url="https://xiezuocat.com" data-iframe>秘塔写作猫</a></li>
+                         
+                        <li><a href="#" data-url="https://ai.wps.cn/" data-iframe>WPS ai</a></li>
+                        <li><a href="#" data-url="https://www.aippt.cn/" data-iframe>AiPPT</a></li>
+                        <li><a href="#" data-url="https://www.xiaohuanxiong.com/"data-iframe>商汤公数据表格分析</a></li>
+                        <li><a href="#" data-url="https://xmind.ai//" >XmindAi思维导图</a></li>
+                        <li><a href="#" data-url="https://miaobi.xinhuaskl.com/" data-iframe>新华妙笔</a></li>
+                        <li><a href="#" data-url="https://wawawriter.com//" data-iframe>蛙蛙剧本创作</a></li>
+                        <li><a href="#" data-url="https://ai.kezhan365.com/" data-iframe>万彩AI</a></li>
+                        <li><a href="#" data-url="https://writersdesk.net/" data-iframe>星火网文助手</a></li>
+                        <li><a href="#" data-url="https://pro.123paper.cn/pc//" data-iframe>论文大师</a></li>
+                        <li><a href="#" data-url="https://fanyi.qq.com/" data-iframe>腾讯翻译君</a></li>
+                    </ul>
+                </li>
+                <!-- AI社区 -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-users"></i> AI社区交流
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://civitai.com">C站 Civitai</a></li>
+                        <li><a href="#" data-url="https://d.design/ai/edit?inspirationId=Blx1F-jtK7&mode=pro">D站堆友</a></li>
+                        <li><a href="#" data-url="http://ai.sklccc.com/">AI内容检测</a></li>
+                        <li><a href="#" data-url="https://gptzero.me/">GPTzero检测ai抄袭</a></li>
+                        <li><a href="#" data-url="https://replicate.com/" data-iframe>Replicate</a></li>
+                        <li><a href="#" data-url="https://huggingface.co/">HuggingFace</a></li>
+                        <li><a href="#" data-url="https://www.oschina.net/blog">开源中国Ai</a></li>
+                        <li><a href="#" data-url="https://ai.csdn.net/" data-iframe>CSDN ai社区</a></li>
+                        <li><a href="#" data-url="https://www.yanxishe.com/" data-iframe>Ai研习社</a></li>
+                        <li><a href="#" data-url="https://www.6aiq.com/" data-iframe>AIQ人工智能技术社区</a></li>
+                    </ul>
+                </li>
+                <!-- AI学习平台 -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-book"></i> AI学习平台
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://openbayes.com/console/public/datasets" data-iframe>Openbayes公共ai资源</a></li>
+                        <li><a href="#" data-url="https://www.paddlepaddle.org.cn/" data-iframe>飞桨开源深度学习</a></li>
+                        <li><a href="#" data-url="https://momodel.cn/" data-iframe>浙大Mo</a></li>
+                        <li><a href="#" data-url="http://zh.d2l.ai/" data-iframe>动手学深度学习</a></li>
+                        <li><a href="#" data-url="https://easyai.tech/" data-iframe>人工智能学习库</a></li>
+                        <li><a href="#" data-url="https://mofanpy.com/" data-iframe>莫烦Python</a></li>
+                        <li><a href="#" data-url="https://manaai.cn/" data-iframe>神力Ai代码平台</a></li>
+                        <li><a href="#" data-url="https://www.zhuanzhi.ai/" data-iframe>专知：人工智能</a></li>
+                    </ul>
+                </li>
+                <!-- AI语音工具 -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-microphone"></i> AI语音视频
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://www.uberduck.ai/" data-iframe>Uberduck电影原型语音</a></li>
+                        <li><a href="#" data-url="https://ondoku3.com/zh-hans/">Ondoku语音朗读</a></li>
+                        <li><a href="#" data-url="https://www.text-to-speech.cn/" data-iframe>TTS文本转语音</a></li>
+                        <li><a href="#" data-url="https://ttsmaker.com/" data-iframe>TTSmaker免费文本转语音</a></li>
+                        <li><a href="#" data-url="https://peiyin.xunfei.cn/" data-iframe>讯飞智作</a></li>
+                        <li><a href="#" data-url="https://yuedu.data-baker.com/" data-iframe>标贝悦读Ai配音</a></li>
+                        <li><a href="#" data-url="https://www.youyan3d.com" data-iframe>有言3D数字人</a></li>
+                        <li><a href="#" data-url="https://www.ihuiwa.com/" data-iframe>绘蛙图像转视频</a></li>
+                         <li><a href="#" data-url="https://viggle.ai/" data-iframe>Viggle角色动态视频</a></li>
+                          <li><a href="#" data-url="https://aigc.yizhentv.com/home/app/" data-iframe>一帧秒创</a></li>
+                           <li><a href="#" data-url="https://cn.jollytoday.com/" >鬼手剪辑</a></li>
+                          <li><a href="#" data-url="https://app.runwayml.com/" >Runway视频生成</a></li>
+                          <li><a href="#" data-url="https://www.aistudios.com/" data-iframe>Ai Studio</a></li>
+                           <li><a href="#" data-url="https://typemovie.art/" data-iframe>讯飞绘境</a></li>
+                    </ul>
+                </li>
+                <!-- 设计师必备 -->
+                <li class="category">
+                    <div class="category-header">
+                        <i class="fas fa-book"></i> 设计师必备
+                    </div>
+                    <ul class="sites">
+                        <li><a href="#" data-url="https://www.zhongguose.com/" data-iframe>中国色库</a></li>
+                        <li><a href="#" data-url="https://www.mockplus.cn" data-iframe>摹客协作</a></li>
+                        <li><a href="#" data-url="https://www.67tool.com" data-iframe>即时工具</a></li>
+                        <li><a href="#" data-url="https://www.pinterest.com/">世界花瓣</a></li>
+                        <li><a href="#" data-url="https://huaban.com/" data-iframe>中国花瓣</a></li>
+                        <li><a href="#" data-url="https://www.zcool.com.cn/" data-iframe>ZCOOL站酷</a></li>
+                        <li><a href="#" data-url="https://unsplash.com/">Unsplash免版权图库</a></li>
+                        <li><a href="#" data-url="https://www.xinpianchang.com" data-iframe>新片场视频素材</a></li>
+                        <li><a href="#" data-url="https://www.skypixel.com/">全球航拍图</a></li>
+                        <li><a href="#" data-url="https://www.bigbigwork.com/" data-iframe>大作灵感素材</a></li>
+                        <li><a href="#" data-url="https://www.hellofont.cn/" data-iframe>自由字体</a></li>
+                        <li><a href="#" data-url="https://www.3d66.com" data-iframe>3D溜溜</a></li>
+                        <li><a href="#" data-url="https://www.soujianzhu.cn/NormAndRules/Default.aspx" data-iframe>建筑相关规范</a></li>
+                        <li><a href="#" data-url="https://mubu.com" data-iframe>幕布脑图笔记</a></li>
+                        <li><a href="#" data-url="http://www.ad-mart.cn" data-iframe>广告材料超市</a></li>
+                        <li><a href="#" data-url="https://ruancang.net" data-iframe>软件仓库</a></li>
+                        <li><a href="#" data-url="http://hao.shejidaren.com" data-iframe>更多设计导航</a></li>
+                        <li><a href="#" data-url="http://hao.shejidaren.com" data-iframe>更多...</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 版权信息 -->
+       
+          <div class="copyright">
+               TXT阅读器.@ <a href="TXTbook/" target="new"> TXTBOOK</a>
+                &copy; 2024@Blueink All Rights Reserved.
+                <a href="http://beian.miit.gov.cn/">沪ICP备2025114453号-1</a>
+            </div>
+        </div>
+
+        <!-- 右侧内容区域 -->
+        <div class="content">
+            <iframe id="ai-frame" src="/so/index.php" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

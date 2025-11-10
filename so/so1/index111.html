@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>AI聚合，聚搜天下！</title> 
+  <meta name="keywords" content="简单搜索,聚合搜索,元搜索引擎,磁力搜索网站,BT搜索网站" /> 
+  <meta name="description" content="简单搜索，一个高效聚合搜索工具。聚合百度、搜狗、Google、必应等上百个搜索引擎。一键资源搜索、磁力搜索、图片搜索，视频搜索、学术搜索。简单搜索-搜索更加简单！资源达人、工作必备利器！" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5" /> 
+  <link rel="stylesheet" type="text/css" href="css/style-min.css?20210917" /> 
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" /> 
+  <link rel="shortcut icon" href="images/favicon.ico" /> 
+  <link rel="ico" href="images/favicon.ico" />
+     <link rel="stylesheet" href="css/Fontcss.css" />
+ </head> 
+<style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      animation: changeBackground 80s infinite; /* 80秒切换一次背景，无限循环 */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @keyframes changeBackground {
+      0% {
+        background-image: url(images/qicdxsss01.jpg); /* 第一张背景图片 */
+      }
+      20% {
+        background-image: url(images/qicdxsss02.jpg); /* 第二张背景图片 */
+      }
+      40% {
+        background-image: url(images/qicdxsss03.jpg); /* 第三张背景图片 */
+      }
+      60% {
+        background-image: url(images/qicdxsss04.jpg); /* 第四张背景图片 */
+      }
+	  80% {
+        background-image: url(images/qicdxsss05.jpg); /* 第五张背景图片 */
+		}
+      100% {
+        background-image: url(images/qicdxsss01.jpg); /* 回到第一张背景图片 */
+      }
+    }
+  </style>
+ 
+ <body class="mobile "> 
+  <div class="header clearfix"> 
+   <div class="mywth" id="tp-weather-widget">
+     
+   </div> 
+   <div class="main"> 
+    <div class="right-side"> 
+     <div class=""> 
+      <div class="box-main"> 
+      <h6>
+       <div  class="shlogo">  </div> 
+        聚合搜索</h6>
+       <!-- Super Search --> 
+       <div id="search" class="s-search"> 
+        <div id="search-list" class="hide-type-list"> 
+         <div class="s-type">
+          <span></span> 
+          <div class="s-type-list"> 
+           <label for="type-baidu">常用</label> 
+           <label for="type-pexels">图片</label> 
+            <label for="type-freebiesbug">素材</label> 
+           <label for="type-163">音乐</label> 
+           <label for="type-cupfox">影视</label> 
+           <label for="type-taobao">购物</label> 
+           <label for="type-pc6">工具</label> 
+           <label for="type-airbnb">旅游</label>
+           <label for="type-douban">社区</label> 
+           
+          </div> 
+         </div> 
+         <div class="search-group group-a s-current"> 
+          <span class="type-text">常用</span> 
+          <ul class="search-type"> 
+           <li> <input checked="" hidden="" type="radio" name="type" id="type-baidu" value="https://www.baidu.com/s?wd=" data-placeholder="百度一下" /> <label for="type-baidu"><span style="color:#2100E0">百度</span></label> </li> 
+           <li> <input type="radio" hidden="" name="type" id="type-google" value="https://www.google-fix.com/search?q=" data-placeholder="谷歌搜索" /> <label for="type-google"><span style="color:#3B83FA">G</span><span style="color:#F3442C">o</span><span style="color:#FFC300">o</span><span style="color:#4696F8">g</span><span style="color:#2CAB4E">l</span><span style="color:#F54231">e</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-bing" value="https://cn.bing.com/search?q=" data-placeholder="必应搜索" /> <label for="type-bing"><span style="color:#38a994">必应</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-sogou" value="https://www.sogou.com/web?query=" data-placeholder="搜狗搜索" /> <label for="type-sogou"><span style="color:#ea4369">搜狗</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-so" value="https://www.so.com/s?q=" data-placeholder="360搜索" /> <label for="type-so"><span style="color:#47c574">360</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-zhihu" value="https://www.zhihu.com/search?type=content&amp;q=" data-placeholder="知乎搜索" /> <label for="type-zhihu"><span style="color:#4374ff">知乎</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="weixin" value="https://weixin.sogou.com/weixin?type=2&query=" data-placeholder="微信搜索" /> <label for="weixin"><span style="color:#6bd06a">微信</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-weibo" value="https://s.weibo.com/weibo/" data-placeholder="微博搜索" /> <label for="type-weibo"><span style="color:#ffac00">微博</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-toutiao" value="https://so.toutiao.com/search?dvpf=pc&source=input&keyword=" data-placeholder="头条搜索" /> <label for="type-toutiao"><span style="color:#F04142">头条</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-magi" value="https://magi.com/search?q=" data-placeholder="Magi搜索" /> <label for="type-magi"><span style="color:#14A2F5">Magi</span></label> </li> 
+           <li><input hidden type="radio"name="type"id="type-dribbble"value="https://dribbble.com/search?q="data-placeholder="Dribbble search"><label for="type-dribbble"><span style="color:#EC4989">Dribbble</span></label></li>
+           <li><input hidden type="radio"name="type"id="type-behance"value="https://www.behance.net/search?search="data-placeholder="Behance search"><label for="type-behance"><span style="color:#0055FF">Be</span></label></li>
+<li><input hidden type="radio"name="type"id="type-easyicon"value="https://www.iconfont.cn/search/index?searchType=icon&q="data-placeholder="图标搜索 (支持中文)"><label for="type-easyicon"><span style="color:#383331">Icon</span></label></li>
+<li><input hidden type="radio"name="type"id="type-huaban"value="https://huaban.com/search?q="data-placeholder="搜索花瓣网"><label for="type-huaban"><span style="color:#E35452">花瓣</span></label></li>
+<li><input hidden type="radio"name="type"id="type-g"value="https://www.pinterest.com/search/pins/?q="data-placeholder="搜索 Pinterest"><label for="type-g"><span style="color:#bd081c">Pinterest</span></label></li><li><input hidden type="radio"name="type"id="type-freepik"value="http://www.freepik.com/index.php?goto=2&searchform=1&k="data-placeholder="freepik search"><label for="type-freepik"><span style="color:#448CD6">freepik</span></label></li>
+<li><input hidden type="radio" name="type" id="type-zcool-web2" value="http://www.zcool.com.cn/search/content?&word=" data-placeholder="站酷"><label  for="type-zcool-web2"><span style="color:#ffac00">站酷</span></label></li>
+           
+          </ul> 
+         </div> 
+         <div class="search-group group-b">
+          <span class="type-text">图片</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-pexels" value="https://www.pexels.com/zh-tw/search/" data-placeholder="知名度最高的免版权免费图片网站(请用英文关键字搜索)" /> <label for="type-pexels"><span style="color:#05A081">Pexels</span></label> </li>
+           <li> <input hidden="" type="radio" name="type" id="type-hellorf" value="http://www.hellorf.com/photo/search/all/" data-placeholder="海洛图库" /> <label for="type-hellorf"><span style="color:#262626">海洛图库</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-baidu-images" value="http://image.baidu.com/search/index?tn=baiduimage&amp;ps=1&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;nc=1&amp;ie=utf-8&amp;word=" data-placeholder="百度图片搜索" /> <label for="type-baidu-images"><span style="color:#2100E0">百度</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-google-images" value="https://www.google.com.hk/search?newwindow=1&amp;safe=strict&amp;biw=1542&amp;bih=956&amp;tbm=isch&amp;sa=1&amp;q=" data-placeholder="谷歌图片搜索" /> <label for="type-google-images"><span style="color:#3B83FA">G</span><span style="color:#F3442C">o</span><span style="color:#FFC300">o</span><span style="color:#4696F8">g</span><span style="color:#2CAB4E">l</span><span style="color:#F54231">e</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-BING" value="http://cn.bing.com/images/search?q=" data-placeholder="BING图片搜索" /> <label for="type-BING"><span style="color:#00698F">Bing</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-pixabay" value="https://pixabay.com/zh/images/search/" data-placeholder="Pixabay拥有超过2.4百万张优质图片和视频素材，免费正版高清图片素材库" /> <label for="type-pixabay"><span style="color:#40b3ec">Pixabay</span></label> </li> <li><input hidden type="radio"name="type"id="type-500px"value="https://500px.com/search?q="data-placeholder="500PX 品质摄影社区"><label for="type-500px"><span style="color:#40b3ec">500PX</span></label></li>
+           <li> <input hidden="" type="radio" name="type" id="type-unsplash" value="https://unsplash.com/search/" data-placeholder="Unsplash 高清免版权图片" /> <label for="type-unsplash"><span style="color: #966">Unsplash</span></label> </li> 
+           <li><input hidden type="radio" name="type" id="type-yandextupian" value="https://yandex.com/images/search?family=yes&text=" data-placeholder="俄罗斯Yandex图片搜索引擎(好多高清图、可以用中文)"><label for="type-yandextupian"><span style="color: #F90">Yandex图片</span></label></li>
+           
+           <li> <input hidden="" type="radio" name="type" id="type-wallpaper-sc" value="https://www.wallpaper.com/search?q=car" data-placeholder="请用英文搜索「Wallpaper」的壁纸内容" /> <label for="type-wallpaper-sc"><span style="color:#00585f">壁纸</span></label> </li> 
+           
+           </ul></div><div class="search-group group-c"><span class="type-text">素材</span><ul class="search-type">
+
+<li><input hidden type="radio"name="type"id="type-freebiesbug"value="https://freebiesbug.com/?s="data-placeholder="搜索freebiesbug上的 UI 素材"><label for="type-freebiesbug"><span style="color:#313439">UI</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-zcool"value="http://www.zcool.com.cn/tosearch.do?page=4&f=hb&world="data-placeholder="站酷素材"><label for="type-zcool"><span style="color:#ffac00">站酷素材</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-nipic"value="http://soso.nipic.com/?q="data-placeholder="呢图"><label for="type-nipic"><span style="color:#00599e">呢图</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-iconfont"value="https://www.iconfont.cn/search/index?searchType=icon&q=" data-placeholder="阿里巴巴矢量图标库"><label for="type-iconfont"><span style="color: #6666FF">Iconfont</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-thenounproject"value="https://thenounproject.com/search/?q="data-placeholder="Noun Project 优质图标库"><label for="type-thenounproject"><span style="color: #CC9900">Noun Project</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-officeplus"value="http://www.officeplus.cn/List.shtml?cat="data-placeholder="Office Plus"><label for="type-officeplus"><span style="color:#e53d10">PPT</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-soogif"value="http://soogif.com/search/1/"data-placeholder="Gif"><label for="type-soogif"><span style="color:#00585f">Gif</span></label></li>
+<li><input hidden type="radio"name="type"id="type-CSSWINNER"value="https://huaban.com/search?q="data-placeholder="花瓣灵感"><label for="type-CSSWINNER"><span style="color:#e45151">花瓣网</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-ui-cn"value="http://s.ui.cn/index.html?keywords="data-placeholder="UI中国"><label for="type-ui-cn"><span style="color:#3498db">UI中国</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-68Design"value="http://www.68design.net/work/?k="data-placeholder="68Design网页设计联盟"><label for="type-68Design"><span style="color: #F39">68Design</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-uisdc"value="http://so.uisdc.com/cse/search?s=16162430669563244173&q="data-placeholder="优设网"><label for="type-uisdc"><span style="color: #33F">优设</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-abduzeedo"value="http://abduzeedo.com/search/node?keys="data-placeholder="abduzeedo"><label for="type-abduzeedo"><span style="color: #6CF">abduzeedo</span></label></li>
+
+<li><input hidden type="radio"name="type"id="type-niice"value="https://niice.co/search/"data-placeholder="niice灵感分享站"><label for="type-niice"><span style="color: #63F">niice</span></label></li>           
+          </ul> 
+         </div> 
+         <div class="search-group group-e">
+          <span class="type-text">音乐</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-163" value="http://music.163.com/#/search/m/?s=" data-placeholder="网易云音乐" /> <label for="type-163"><span style="color:#c70c0c">云音乐</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-kugou" value="https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=" data-placeholder="酷狗音乐" /> <label for="type-kugou"><span style="color:#e96b00">酷狗</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-baidu-music" value="http://music.baidu.com/search?key=" data-placeholder="百度音乐" /> <label for="type-baidu-music"><span style="color:#2100E0">百度音乐</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-qq-music" value="https://y.qq.com/portal/search.html#searchid=1&amp;remoteplace=txt.yqq.top&amp;t=song&amp;w=" data-placeholder="QQ音乐" /> <label for="type-qq-music"><span style="color:#2eb674">QQ音乐</span></label> </li> 
+            <li> <input hidden="" type="radio" name="type" id="type-kuwo" value="http://www.kuwo.cn/search/list?key=" data-placeholder="酷我音乐" /> <label for="type-kuwo"><span style="color:#FF7200">酷我</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-ape8" value="http://ape8.cn/?s=" data-placeholder="ape8无损音乐" /> <label for="type-ape8"><span style="color:#999">无损音乐</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-ximalaya" value="https://www.ximalaya.com/search/" data-placeholder="喜马拉雅: 有声小说,听小说,有声书,在线听书,电台FM" /> <label for="type-ximalaya"><span style="color:#FF6439">喜马拉雅</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-spotify" value="http://www.qupu123.com/Search?keys=" data-placeholder="中国曲谱网" /> <label for="type-spotify"><span style="color:#D16060">曲谱</span></label> </li> 
+          </ul> 
+         </div> 
+         <div class="search-group group-f">
+          <span class="type-text">影视</span> 
+          <ul class="search-type">
+           <li> <input hidden="" type="radio" name="type" id="type-cupfox" value="https://www.cupfox.com/search?key=" data-placeholder="影视资源聚合搜索引擎" /> <label for="type-cupfox"><span style="color:#DB542F">茶杯狐</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-gaoqing" value="https://www.piaohua.com/plus/search.php?kwtype=0&keyword=" data-placeholder="飘花电影网电影下载站" /> <label for="type-gaoqing"><span style="color:#587FC2">电影下载</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-douyin" value="https://www.douyin.com/search/" data-placeholder="抖音视频" /> <label for="type-douyin"><span style="color:#88485C">抖音</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-kuaishou" value="https://www.kuaishou.com/search/video?searchKey=" data-placeholder="快手视频" /> <label for="type-kuaishou"><span style="color:#FF3D13">快手</span></label> </li> 
+        <li> <input hidden="" type="radio" name="type" id="type-bilibili" value="https://search.bilibili.com/all?keyword=" data-placeholder="B站搜索" /> <label for="type-bilibili"><span style="color:#448CD6">B站</span></label> </li>
+           <li> <input hidden="" type="radio" name="type" id="type-360kan" value="https://so.360kan.com/index.php?kw=" data-placeholder="360影视" /> <label for="type-360kan"><span style="color:#1CB196">360影视</span></label> </li> 
+           
+           <li> <input hidden="" type="radio" name="type" id="type-cn163" value="http://cn163.net/?s=" data-placeholder="cn163天天美剧" /> <label for="type-cn163"><span style="color:#5E5D5B">天天美剧</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-dmhy" value="https://www.soman.com/search.html?keyword=" data-placeholder="搜漫 一站式漫画搜索引擎" /> <label for="type-dmhy"><span style="color:#FF6100">搜漫画</span></label> </li> 
+          </ul> 
+         </div> 
+         <div class="search-group group-g">
+          <span class="type-text">购物</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-taobao" value="https://s.taobao.com/search?q=" data-placeholder="淘宝" /> <label for="type-taobao"><span style="color:#ff4400">淘宝</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-tmall" value="https://list.tmall.com/search_product.htm?q=" data-placeholder="天猫" /> <label for="type-tmall"><span style="color:#dd2727">天猫</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-jd" value="https://search.jd.com/Search?keyword=" data-placeholder="京东" /> <label for="type-jd"><span style="color:#c91623">京东</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-amazon" value="https://www.amazon.cn/s/ref=nb_sb_noss_1?__mk_zh_CN=亚马逊网站&amp;url=search-alias%3Daps&amp;field-keywords=" data-placeholder="亚马逊" /> <label for="type-amazon"><span style="color:#FF8C00">亚马逊</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-amazonusa" value="https://www.amazon.com/s?k=" data-placeholder="亚马逊美国站" /> <label for="type-amazonusa"><span style="color:#262626">亚马逊美国</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-pinduoduo" value="https://mobile.pinduoduo.com/search_result.html?search_key=" data-placeholder="拼多多" /> <label for="type-pinduoduo"><span style="color:#E12A1F">拼多多</span></label> </li> 
+            <li> <input hidden="" type="radio" name="type" id="type-dangdang" value="http://search.dangdang.com/?key=" data-placeholder="当当" /> <label for="type-dangdang"><span style="color:#ff3228">当当</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-meituan" value="http://cd.meituan.com/s/?w=" data-placeholder="美团" /> <label for="type-meituan"><span style="color:#35b7a9">美团</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-ebay" value="http://www.ebay.com/sch/" data-placeholder="eBay" /> <label for="type-ebay"><span style="color:#e53238">e</span><span style="color:#0064d2">B</span><span style="color:#f5af02">a</span><span style="color:#86b817">y</span></label> </li> 
+          </ul> 
+         </div> 
+         <div class="search-group group-h">
+          <span class="type-text">旅游</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-airbnb" value="https://www.airbnb.cn/s/" data-placeholder="Airbnb爱彼迎 - 全球民宿,公寓,短租" /> <label for="type-airbnb"><span style="color:#FF8299">爱彼迎</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-chanyouji" value="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=site%3Awww.xiaohongshu.com%20" data-placeholder="小红书" /> <label for="type-chanyouji"><span style="color:#262626">小红书</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-qunar" value="http://travel.qunar.com/search/all/" data-placeholder="搜索「去哪儿」旅游攻略" /> <label for="type-qunar"><span style="color:#00a2ac">去哪儿</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-dianping" value="http://www.dianping.com/search/keyword/1/0_" data-placeholder="大众点评" /> <label for="type-dianping"><span style="color:#fa9c20">大众点评</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-tripadvisor" value="https://www.tripadvisor.com/Search?q=" data-placeholder="猫途鹰旅行社区" /> <label for="type-tripadvisor"><span style="color:#589442">猫途鹰</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-qyer" value="http://search.qyer.com/index?wd=" data-placeholder="穷游" /> <label for="type-qyer"><span style="color:#07ae72">穷游</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-mafengwo" value="https://www.mafengwo.cn/search/q.php?q=" data-placeholder="旅游攻略,自由行,自助游攻略,旅游社交分享网" /> <label for="type-mafengwo"><span style="color:#4abdcc">马蜂窝</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-tuniu" value="https://s.tuniu.com/search_complex/whole-fz-0-" data-placeholder="途牛旅游网" /> <label for="type-tuniu"><span style="color:#F08300">途牛</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-ditumap" value="https://map.baidu.com/search/" data-placeholder="百度地图" /> <label for="type-ditumap"><span style="color:#999">地图</span></label> </li> 
+          </ul> 
+         </div> 
+          <div class="search-group group-j">
+          <span class="type-text">工具</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-pc6" value="http://s.pc6.com/?k=" data-placeholder="PC6软件下载站" /> <label for="type-pc6"><span style="color:#262626">软件</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-AAA" value="http://clb6.co/s/" data-placeholder="最佳的资源搜索引擎 - 磁力宝" /> <label for="type-AAA"><span style="color:#262626"> BT下载</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-ygyhg" value="https://www.pan131.com/yun/" data-placeholder="盘131百度云搜索引擎提供百度网盘资源搜索服务" /> <label for="type-ygyhg"><span style="color: #CC6699">网盘</span></label> </li>
+           <li> <input hidden="" type="radio" name="type" id="type-cnzzla" value="http://top.cnzzla.com/index.php?mod=search&type=tags&query=" data-placeholder="站长啦网站搜索" /> <label for="type-cnzzla"><span style="color:#5CC151">网站搜索</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-kuaidi100" value="https://m.kuaidi100.com/result.jsp?nu=" data-placeholder="请输入快递单号" /> <label for="type-kuaidi100"><span style="color:#262626">查快递</span></label> </li> 
+          <li> <input hidden="" type="radio" name="type" id="type-g" value="https://zh.wikihow.com/wikiHowTo?search=" data-placeholder="搜索 wikihow" /> <label for="type-g"><span style="color:#6bd06a">wikihow</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-translateA" value="https://translate.google.cn/#zh-CN/en/" data-placeholder="中 译 英（Google）" /> <label for="type-translateA"><span style="color: #FF6600">中-&gt;英</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-translateB" value="https://fanyi.baidu.com/#en/zh/" data-placeholder="英 译 中（百度，支持整站翻译）" /> <label for="type-translateB"><span style="color: #993333">英-&gt;中</span></label> </li> 
+
+           <li> <input hidden="" type="radio" name="type" id="type-youdao" value="http://www.youdao.com/w/" data-placeholder="请输入要翻译的单词或文字" /> <label for="type-youdao"><span style="color:#262626">有道</span></label> </li> 
+          </ul> 
+         </div> 
+         <div class="search-group group-i">
+          <span class="type-text">社区</span> 
+          <ul class="search-type"> 
+           <li> <input hidden="" type="radio" name="type" id="type-douban" value="https://www.douban.com/search?q=" data-placeholder="豆瓣" /> <label for="type-douban"><span style="color:#379b46">豆瓣</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-weibo" value="http://s.weibo.com/weibo/" data-placeholder="微博" /> <label for="type-weibo"><span style="color:#e6162d">微博</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-zhihu" value="http://zhihu.sogou.com/zhihu?query=" data-placeholder="知乎" /> <label for="type-zhihu"><span style="color:#0f89eb">知乎</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-weixin" value="http://weixin.sogou.com/weixin?type=2&amp;query=" data-placeholder="微信" /> <label for="type-weixin"><span style="color:#76d140">微信</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-baike" value="http://baike.baidu.com/item/" data-placeholder="百度百科" /> <label for="type-baike"><span style="color:#2100E0">百度百科</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-medium" value="https://medium.com/search?q=" data-placeholder="Medium" /> <label for="type-medium"><span style="color:#262626">Medium</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-twitter" value="https://twitter.com/search?q=" data-placeholder="Twitter" /> <label for="type-twitter"><span style="color:#1da1f2">Twitter</span></label> </li> 
+           <li> <input hidden="" type="radio" name="type" id="type-facebook" value="https://www.facebook.com/search/top/?init=quick&amp;q=" data-placeholder="Facebook" /> <label for="type-facebook"><span style="color:#3b5998">Facebook</span></label> </li> 
+          </ul> 
+         </div>
+        </div> 
+        <form action="https://www.baidu.com/s?wd=" method="get" target="_blank" id="super-search-fm"> 
+         <input type="text" id="search-text" placeholder="百度一下" style="outline:none" autofocus="" /> 
+         <button type="submit"><i class="fa fa-search"></i></button> 
+        </form> 
+        <div class="set-check"> 
+         <input type="checkbox" id="set-search-blank" class="bubble-3" checked="" required="" /> 
+         <label for="set-search-blank" class="green">新窗口打开搜索结果</label> 
+         <div class="box search-hot-text" id="box" style="display: none;"> 
+          <ul></ul>
+         </div> 
+        </div> 
+       </div> 
+       <script type="text/javascript">
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('!2(){2 g(){h(),i(),j(),k()}2 h(){d.9=s()}2 i(){z a=4.8(\'A[B="7"][5="\'+p()+\'"]\');a&&(a.9=!0,l(a))}2 j(){v(u())}2 k(){w(t())}2 l(a){P(z b=0;b<e.O;b++)e[b].I.1c("s-M");a.F.F.F.I.V("s-M")}2 m(a,b){E.H.S("L"+a,b)}2 n(a){6 E.H.Y("L"+a)}2 o(a){f=a.3,v(u()),w(a.3.5),m("7",a.3.5),c.K(),l(a.3)}2 p(){z b=n("7");6 b||a[0].5}2 q(a){m("J",a.3.9?1:-1),x(a.3.9)}2 r(a){6 a.11(),""==c.5?(c.K(),!1):(w(t()+c.5),x(s()),s()?E.U(b.G,+T X):13.Z=b.G,10 0)}2 s(){z a=n("J");6 a?1==a:!0}2 t(){6 4.8(\'A[B="7"]:9\').5}2 u(){6 4.8(\'A[B="7"]:9\').W("14-N")}2 v(a){c.1e("N",a)}2 w(a){b.G=a}2 x(a){a?b.3="1a":b.16("3")}z y,a=4.R(\'A[B="7"]\'),b=4.8("#18-C-19"),c=4.8("#C-12"),d=4.8("#17-C-15"),e=4.R(".C-1b"),f=a[0];P(g(),y=0;y<a.O;y++)a[y].D("Q",o);d.D("Q",q),b.D("1d",r)}();',62,77,'||function|target|document|value|return|type|querySelector|checked||||||||||||||||||||||||||var|input|name|search|addEventListener|window|parentNode|action|localStorage|classList|newWindow|focus|superSearch|current|placeholder|length|for|change|querySelectorAll|setItem|new|open|add|getAttribute|Date|getItem|href|void|preventDefault|text|location|data|blank|removeAttribute|set|super|fm|_blank|group|remove|submit|setAttribute'.split('|'),0,{}))
+</script> 
+       <div class="bd-share"> 
+        <div class="share"> 
+         <div class="bdsharebuttonbox" data-tag="share_1"> 
+         </div> 
+        </div> 
+     
+        <div class="slogan"> 
+         <ul> 
+          
+          <li><span></span> 聚合搜索，聚搜天下！ <span></span></li> 
+
+                  
+                  
+                <li><span></span> ©CopyRight 2024 Blueink All Rights Reserved. <span></span></li>  </ul> 
+                  
+        </div> 
+       </div> 
+       <hr /> 
+       <div class="site-footer text-center f12"> 
+        <div class="row"> 
+         <div class="col-md-4 foot-share"> 
+         </div> 
+         <div class="col-md-4 foot-col-3"> 
+          <div> 
+           <p class="pull-left" style="margin-right:15px"></p>
+           <div class="pull-left"> 
+            <h3 style="margin:13px 0;font-weight:normal;text-align:left;"></h3> 
+            <p style="font-size:14px;text-align:left;"></p> 
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+       <script src="/js/jquery.min.js"></script> 
+       <script src="/js/main.js"></script> 
+     </div>
+    </div>
+   </div>
+  </div>
+  <div style="display:none">
+
+</div> 
+ </body>
+</html>

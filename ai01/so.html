@@ -1,0 +1,245 @@
+<!-- 聚合搜索框 -->
+<div class="simple-search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="搜索AI工具或传统内容...">
+        <div class="search-controls">
+            <select id="searchEngine" class="engine-select">
+                <optgroup label="AI工具专用引擎">
+                    <option value="futuretools">FutureTools</option>
+                    <option value="aitools">AITools</option>
+                    <option value="theresanaiforthat">There's An AI For That</option>
+                    <option value="producthunt">Product Hunt AI</option>
+                    <option value="aihub">AIHub</option>
+                </optgroup>
+                <optgroup label="传统搜索引擎">
+                    <option value="baidu">百度</option>
+                    <option value="google">谷歌</option>
+                    <option value="bing">必应</option>
+                    <option value="duckduckgo">DuckDuckGo</option>
+                    <option value="yandex">Yandex</option>
+                </optgroup>
+            </select>
+            <button id="searchBtn" class="search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="search-suggestions">
+        <span class="tag">ChatGPT</span>
+        <span class="tag">Midjourney</span>
+        <span class="tag">Claude</span>
+        <span class="tag">Stable Diffusion</span>
+        <span class="tag">GitHub Copilot</span>
+        <span class="tag">AI绘画</span>
+        <span class="tag">AI写作</span>
+        <span class="tag">AI编程</span>
+    </div>
+</div>
+
+<style>
+.simple-search-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.search-box {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #333;
+}
+
+.search-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.engine-select {
+    padding: 12px 16px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    min-width: 160px;
+}
+
+.engine-select:focus {
+    background: #ebebeb;
+}
+
+.search-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+}
+
+.search-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.tag {
+    padding: 8px 16px;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.tag:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .search-box {
+        flex-direction: column;
+        padding: 16px;
+    }
+    
+    .search-input {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+    
+    .search-controls {
+        width: 100%;
+    }
+    
+    .engine-select {
+        flex: 1;
+    }
+    
+    .search-btn {
+        width: 100%;
+        border-radius: 10px;
+        padding: 12px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchEngine = document.getElementById('searchEngine');
+    const searchBtn = document.getElementById('searchBtn');
+    const tags = document.querySelectorAll('.tag');
+    
+    // 搜索引擎URL映射
+    const searchEngines = {
+        // AI工具专用引擎
+        'futuretools': 'https://www.futuretools.io/search?q=',
+        'aitools': 'https://aitools.so/search?q=',
+        'theresanaiforthat': 'https://theresanaiforthat.com/search/?q=',
+        'producthunt': 'https://www.producthunt.com/search?q=',
+        'aihub': 'https://aihub.cn/search?q=',
+        // 传统搜索引擎
+        'baidu': 'https://www.baidu.com/s?wd=',
+        'google': 'https://www.google.com/search?q=',
+        'bing': 'https://www.bing.com/search?q=',
+        'duckduckgo': 'https://duckduckgo.com/?q=',
+        'yandex': 'https://yandex.com/search/?text='
+    };
+    
+    // 搜索按钮点击事件
+    searchBtn.addEventListener('click', function() {
+        performSearch();
+    });
+    
+    // 输入框回车事件
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    // 标签点击事件
+    tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            searchInput.value = this.textContent;
+            searchInput.focus();
+        });
+    });
+    
+    // 执行搜索
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (!query) {
+            showNotification('请输入搜索关键词');
+            return;
+        }
+        
+        const engine = searchEngine.value;
+        const searchUrl = searchEngines[engine] + encodeURIComponent(query);
+        
+        window.open(searchUrl, '_blank');
+    }
+    
+    // 自定义通知函数
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.left = '50%';
+        notification.style.transform = 'translateX(-50%)';
+        notification.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        notification.style.color = 'white';
+        notification.style.padding = '12px 24px';
+        notification.style.borderRadius = '8px';
+        notification.style.zIndex = '1000';
+        notification.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        // 3秒后自动移除
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 500);
+        }, 3000);
+    }
+});
+</script>

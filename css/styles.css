@@ -1,0 +1,265 @@
+/* 基础样式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 深色模式 */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+/* 顶部栏 */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to left, #57b3fc, #f83ed7, #5d54f0, #57b3fc); /* 修改为从左到右的渐变色 */
+    background-size: 200% 100%; /* 背景大小 */
+    animation: gradientAnimation 10s infinite linear; /* 添加动画 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 动态渐变动画 */
+@keyframes gradientAnimation {
+0% {
+        background-position: 100% 0; /* 从右到左 */
+    }
+
+
+100% {
+        background-position: 0 100%; /* 从右到左 */
+    }
+
+}
+.top-bar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .logo img {
+    height: 68px;
+}
+
+/* 导航栏收起/展开按钮 */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.3s;
+}
+
+.toggle-btn:hover {
+    color: #f0f0f0;
+}
+
+/* 主体内容 */
+.container {
+    display: flex;
+    height: calc(100vh - 60px); /* 减去顶部栏高度 */
+}
+
+/* 左侧导航栏 */
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4; /* 默认背景色为浅灰色 */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background-color 0.3s; /* 添加背景色过渡 */
+    position: relative;
+}
+
+/* 深色模式下的导航栏背景色 */
+body.dark-mode .sidebar {
+    background-color: #2d2d2d; /* 深色模式下的背景色 */
+}
+
+/* 导航栏收起时隐藏 */
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+/* 右侧内容区域 */
+.content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s; /* 添加过渡效果 */
+}
+
+/* 当导航栏收起时，右侧内容区域扩展到全屏 */
+.sidebar.collapsed + .content {
+    margin-left: -250px; /* 向左移动 250px，覆盖导航栏的宽度 */
+}
+
+/* iframe 样式 */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: width 0.3s; /* 添加过渡效果 */
+}
+
+/* 当导航栏收起时，iframe 扩展到全屏 */
+.sidebar.collapsed + .content iframe {
+    width: calc(100% + 250px); /* 扩展到全屏 */
+}
+
+/* 分类标题样式 */
+.category-header {
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #e0e0e0; /* 默认背景色为灰色 */
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+}
+
+/* 深色模式下的分类标题背景色 */
+body.dark-mode .category-header {
+    background-color: #444; /* 深色模式下的背景色 */
+    color: #f0f0f0; /* 深色模式下的文字颜色 */
+}
+
+/* 鼠标悬停时分类标题的背景色和文字颜色 */
+.category-header:hover {
+    background-color: #0eb0c9; /* 背景色变为 #0eb0c9 */
+    color: #ffffff; /* 文字颜色变为白色 */
+}
+
+/* 深色模式下鼠标悬停时分类标题的背景色和文字颜色 */
+body.dark-mode .category-header:hover {
+    background-color: #0eb0c9; /* 背景色变为 #0eb0c9 */
+    color: #ffffff; /* 文字颜色变为白色 */
+}
+
+/* 网站列表样式 */
+.sidebar .sites {
+    display: none;
+    padding-left: 20px;
+    background-color: #f4f4f4; /* 默认背景色为浅灰色 */
+    transition: background-color 0.3s; /* 添加背景色过渡 */
+}
+
+/* 深色模式下的网站列表背景色 */
+body.dark-mode .sidebar .sites {
+    background-color: #2d2d2d; /* 深色模式下的背景色 */
+}
+
+.sidebar .sites li {
+    margin: 10px 0;
+}
+
+.sidebar .sites li a {
+    text-decoration: none;
+    color: #333; /* 默认文字颜色为深灰色 */
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+/* 深色模式下的超级链接文字颜色 */
+body.dark-mode .sites li a {
+    color: #f0f0f0; /* 深色模式下的文字颜色为浅色 */
+}
+
+.sidebar .sites li a:hover {
+    color: #0eb0c9; /* 鼠标悬停时文字颜色变化 */
+}
+
+/* 默认展开第一类 */
+.sidebar .category:first-child .sites {
+    display: block;
+}
+
+/* 版权信息 */
+.copyright {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    font-size: 12px;
+    color: #fff; /* 默认版权信息颜色 */
+    background-color: #f4f4f4; /* 默认背景色为浅灰色 */
+    transition: background-color 0.3s, color 0.3s; /* 添加背景色过渡 */
+}
+
+/* 深色模式下的版权信息颜色和背景色 */
+body.dark-mode .copyright {
+    color: #17c9d2; /* 深色模式下的版权信息颜色 */
+    background-color: #2d2d2d; /* 深色模式下的背景色 */
+}
+
+/* 右侧内容区域 */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 使侧边栏占满整个视口高度 */
+}
+
+.sidebar ul {
+    flex: 1; /* 使导航内容区域自动扩展 */
+    overflow-y: auto; /* 添加滚动条 */
+}
+
+.copyright {
+    flex-shrink: 0; /* 防止版权信息被压缩 */
+}
+    .copyright a {
+        display: block; /* 让备案信息独占一行 */
+        color: red; /* 将备案信息颜色改为红色 */
+    }
+    .copyright a:hover {
+        color: darkred; /* 鼠标悬停时变为深红色 */
+    }
+
+
+/* 手机自适应样式 */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 60px; /* 顶部栏高度 */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        transform: translateX(-100%);
+        z-index: 1000;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0);
+    }
+
+    .content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .top-bar .logo img {
+        height: 40px; /* 缩小 Logo */
+    }
+
+    .toggle-btn {
+        display: block; /* 显示导航栏展开/收起按钮 */
+    }
+}
+
+

@@ -1,0 +1,989 @@
+/* 基础字体设置 */
+body {
+    font-family: 'Inter', sans-serif;
+}
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* 背景渐变（新增鼠标跟随容器定位） */
+.gradient-bg {
+    background: linear-gradient(135deg, #050508 0%, #121228 50%, #1a1a3a 100%);
+    background-attachment: fixed;
+    position: relative; /* 为鼠标跟随元素提供定位父级 */
+    overflow: hidden; /* 防止鼠标跟随元素溢出视口 */
+}
+
+/* 1. 鼠标跟随背景效果（优化紫色亮度：更明显不刺眼） */
+#mouse-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    /* 亮紫色径向渐变：中心 rgba(168, 85, 247, 0.25) 更明显，边缘渐变透明避免刺眼 */
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(168, 85, 247, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none; /* 不阻挡鼠标交互 */
+    z-index: 0; /* 位于背景层，不覆盖内容 */
+    transition: transform 0.1s ease, opacity 0.2s ease;
+    opacity: 0.9; /* 保证亮度不暗淡，平衡视觉感受 */
+    filter: blur(30px); /* 降低模糊度至 30px，让紫色边缘更清晰但不锐利 */
+}
+
+/* 2. 鼠标眩晕光效（优化紫色亮度：通透不刺眼） */
+.mouse-glow {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* 浅亮紫色渐变：中心 rgba(192, 132, 252, 0.4) 明亮通透，边缘自然过渡 */
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.4) 0%, rgba(192, 132, 252, 0) 60%);
+    pointer-events: none;
+    z-index: 50; /* 高于内容但不遮挡交互 */
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    filter: blur(12px); /* 降低模糊度至 12px，光效清晰不尖锐 */
+    animation: glow-pulse 2s infinite ease-in-out; /* 呼吸动画避免静态强光 */
+}
+
+/* 眩晕光效呼吸动画（微调透明度范围，平衡亮暗过渡） */
+@keyframes glow-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8; /* 峰值亮度适中，不刺眼 */
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5; /* 谷值亮度不暗淡，保持视觉连贯性 */
+    }
+}
+
+/* 粒子背景容器 */
+#particle-bg {
+    z-index: 0;
+}
+
+/* 左侧分类项样式 */
+.sidebar-item {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer; /* 明确鼠标交互 */
+}
+.sidebar-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+    transition: left 0.5s ease;
+}
+.sidebar-item:hover::after {
+    left: 100%;
+}
+.sidebar-item:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-left-color: #6366f1;
+    transform: translateX(2px);
+}
+.sidebar-item.active {
+    background: rgba(99, 102, 241, 0.15);
+    border-left-color: #6366f1;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.1);
+}
+
+/* 地区筛选样式 */
+.region-filter {
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    position: relative;
+    cursor: pointer;
+}
+.region-filter::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #6366f1;
+    transition: width 0.3s ease;
+}
+.region-filter:hover::after {
+    width: 100%;
+    border-bottom-color: rgba(99, 102, 241, 0.5);
+}
+.region-filter.active {
+    border-bottom-color: #6366f1;
+    color: #6366f1;
+}
+.region-filter.active::after {
+    width: 100%;
+}
+
+/* 网站卡片样式 */
+.site-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.site-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #6366f1, transparent);
+}
+.site-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+}
+.site-card:hover .rating-stars {
+    animation: star-pulse 1s ease infinite;
+}
+/* 确保所有交互元素可点击 */
+.site-card a, .sidebar-item a, .region-filter, button {
+    cursor: pointer;
+    position: relative;
+    z-index: 10; /* 高于背景和光效，保证交互正常 */
+}
+
+/* 国旗图标基础样式（通用，保持不变） */
+.flag-icon {
+    width: 16px; /* 标准宽度，适配文字高度 */
+    height: 12px; /* 宽高比 4:3，符合旗帜常用比例 */
+    border-radius: 2px; /* 轻微圆角，避免尖锐边缘 */
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+    position: relative; /* 用于定位旗帜内部元素 */
+    overflow: hidden; /* 防止内部元素溢出 */
+}
+/* 1. 中国国旗（精确还原：红色底+五颗黄色五角星） */
+.china-flag {
+    background-color: #DE2910; /* 中国红（Pantone 186C） */
+}
+/* 大五角星 */
+.china-flag::before {
+    content: '';
+    position: absolute;
+    top: 2px; /* 上间距 2px */
+    left: 3px; /* 左间距 3px */
+    width: 5px; /* 大星宽度 */
+    height: 5px; /* 大星高度 */
+    background-color: #FFDE00; /* 五星黄（Pantone 109C） */
+    /* 绘制五角星（使用旋转正方形+伪元素组合） */
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 1;
+}
+/* 右上小五角星 */
+.china-flag::after {
+    content: '';
+    position: absolute;
+    top: 1px; /* 上间距 1px */
+    right: 3px; /* 右间距 3px */
+    width: 2px; /* 小星宽度 */
+    height: 2px; /* 小星高度 */
+    background-color: #FFDE00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    transform: rotate(15deg); /* 小星倾斜角度 */
+    z-index: 1;
+}
+/* 右中小五角星（通过第二个伪元素实现） */
+.china-flag span:nth-child(1) {
+    content: '';
+    position: absolute;
+    top: 3px; /* 上间距 3px */
+    right: 2px; /* 右间距 2px */
+    width: 2px;
+    height: 2px;
+    background-color: #FFDE00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    transform: rotate(-15deg);
+    z-index: 1;
+    display: inline-block;
+}
+/* 右下小五角星（通过第三个伪元素实现） */
+.china-flag span:nth-child(2) {
+    content: '';
+    position: absolute;
+    top: 5px; /* 上间距 5px */
+    right: 3px; /* 右间距 3px */
+    width: 2px;
+    height: 2px;
+    background-color: #FFDE00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    transform: rotate(-45deg);
+    z-index: 1;
+    display: inline-block;
+}
+/* 左中小五角星（通过第四个伪元素实现） */
+.china-flag span:nth-child(3) {
+    content: '';
+    position: absolute;
+    top: 6px; /* 上间距 6px */
+    right: 5px; /* 右间距 5px */
+    width: 2px;
+    height: 2px;
+    background-color: #FFDE00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    transform: rotate(45deg);
+    z-index: 1;
+    display: inline-block;
+}
+
+/* 2. 美国国旗（精确还原：红白条纹+蓝色矩形+白色五角星） */
+.usa-flag {
+    background: repeating-linear-gradient(
+        to bottom,
+        #B22234, /* 美国红（Pantone 193C） */
+        #B22234 1px, /* 红条纹高度 1px */
+        #FFFFFF, /* 白色条纹 */
+        #FFFFFF 2px  /* 白条纹高度 1px，总条纹高度 2px */
+    );
+    position: relative;
+}
+/* 左上角蓝色矩形 */
+.usa-flag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 7px; /* 蓝色矩形宽度（占国旗宽度的 43.75%） */
+    height: 8px; /* 蓝色矩形高度（占国旗高度的 66.6%） */
+    background-color: #3C3B6E; /* 美国蓝（Pantone 2945C） */
+    z-index: 1;
+}
+/* 蓝色矩形内的五角星（简化为 5 颗，模拟排列） */
+.usa-flag::after {
+    content: '★★★★★'; /* 使用 Unicode 五角星字符 */
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font-size: 1px; /* 缩小五角星大小 */
+    color: #FFFFFF;
+    letter-spacing: 1px; /* 五角星间距 */
+    line-height: 1.5; /* 五角星行高 */
+    z-index: 2;
+}
+/* 3. 亚洲地区旗帜（红→绿渐变底色+正中间白色五角星） */
+.asia-flag {
+    /* 红色→绿色线性渐变（从左上到右下，过渡自然） */
+    background: linear-gradient(135deg, 
+        #E63946 0%, /* 鲜艳红色（类似枫叶红，避免刺眼） */
+        #43AA8B 100%  /* 清新绿色（类似薄荷绿，与红色对比协调） */
+    );
+    position: relative;
+}
+/* 正中间白色五角星（通过伪元素+clip-path绘制） */
+.asia-flag span {
+    content: '';
+    position: absolute;
+    /* 五角星居中定位：上下左右均50%，再反向平移50%实现完全居中 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px; /* 五角星大小（占旗帜宽度25%，视觉协调） */
+    height: 4px;
+    background-color: #FFFFFF; /* 纯白色五角星，与渐变底色对比明显 */
+    /* 标准正五角星形状（10个顶点坐标，确保五角星对称） */
+    clip-path: polygon(
+        50% 0%,    /* 上顶点 */
+        61% 35%,   /* 右上1/3处 */
+        98% 35%,   /* 右顶点 */
+        68% 57%,   /* 右下1/3处 */
+        79% 91%,   /* 下右顶点 */
+        50% 70%,   /* 下中点 */
+        21% 91%,   /* 下左顶点 */
+        32% 57%,   /* 左下1/3处 */
+        2% 35%,    /* 左顶点 */
+        39% 35%    /* 左上1/3处 */
+    );
+    z-index: 2; /* 确保五角星在渐变底色上方显示 */
+    display: inline-block;
+}
+/* 4. 欧盟旗帜（标准设计：蓝底+12颗金色五角星围成圆形） */
+.europe-flag {
+    background-color: #003399; /* 欧盟蓝（Pantone 280C，官方标准色） */
+    position: relative;
+}
+/* 欧盟旗帜中心定位点（用于计算五角星位置，不可见） */
+.europe-flag::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%); /* 中心点位于旗帜正中心 */
+    z-index: 1;
+}
+/* 12颗金色五角星（通过循环定位实现圆形排列，每颗星间隔 30°） */
+/* 第1颗星（正上方） */
+.europe-flag span:nth-child(1) {
+    content: '';
+    position: absolute;
+    top: 1px; /* 距离顶部 1px */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px; /* 五角星大小 */
+    height: 2px;
+    background-color: #FFCC00; /* 欧盟金（Pantone 109C，官方标准色） */
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第2颗星（右上30°） */
+.europe-flag span:nth-child(2) {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第3颗星（右下30°） */
+.europe-flag span:nth-child(3) {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第4颗星（正下方） */
+.europe-flag span:nth-child(4) {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第5颗星（左下30°） */
+.europe-flag span:nth-child(5) {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第6颗星（左上30°） */
+.europe-flag span:nth-child(6) {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第7颗星（右上60°） */
+.europe-flag span:nth-child(7) {
+    content: '';
+    position: absolute;
+    top: 1.5px;
+    right: 1px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第8颗星（右下60°） */
+.europe-flag span:nth-child(8) {
+    content: '';
+    position: absolute;
+    bottom: 1.5px;
+    right: 1px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第9颗星（左下60°） */
+.europe-flag span:nth-child(9) {
+    content: '';
+    position: absolute;
+    bottom: 1.5px;
+    left: 1px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第10颗星（左上60°） */
+.europe-flag span:nth-child(10) {
+    content: '';
+    position: absolute;
+    top: 1.5px;
+    left: 1px;
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第11颗星（右中） */
+.europe-flag span:nth-child(11) {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+/* 第12颗星（左中） */
+.europe-flag span:nth-child(12) {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 2px;
+    background-color: #FFCC00;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
+    z-index: 2;
+    display: inline-block;
+}
+.other-flag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 评分星星动画 */
+.rating-stars {
+    color: #fbbf24;
+    transition: all 0.3s ease;
+}
+@keyframes star-pulse {
+    0%, 100% { color: #fbbf24; }
+    50% { color: #fde047; text-shadow: 0 0 5px rgba(251, 191, 36, 0.5); }
+}
+
+/* 搜索框聚焦效果 */
+.search-glow:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3), 0 0 10px rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.6);
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* AI风格渐变动画 */
+.animate-gradient-x {
+    background-size: 200% auto;
+    animation: gradient-x 3s ease infinite;
+}
+@keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 分类内容默认隐藏 */
+.category-content.hidden {
+    display: none;
+}
+
+/* 响应式调整（适配移动端） */
+@media (max-width: 768px) {
+    .sidebar-item span.ml-auto {
+        display: none;
+    }
+    .region-filter {
+        padding: 2px 4px;
+        font-size: 10px;
+    }
+    #globalSearch {
+        width: 40vw;
+    }
+    /* 移动端优化鼠标效果：缩小尺寸避免占满屏幕 */
+    #mouse-follower {
+        width: 200px;
+        height: 200px;
+        filter: blur(25px); /* 移动端进一步降低模糊度，保持清晰度 */
+    }
+    .mouse-glow {
+        width: 60px;
+        height: 60px;
+        filter: blur(10px);
+    }
+    /* 移动端呼吸动画优化：降低缩放幅度 */
+    @keyframes glow-pulse {
+        0%, 100% {
+            transform: scale(0.9);
+            opacity: 0.7;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.4;
+        }
+    }
+}
+/* 搜索引擎聚合搜索框样式 */
+.search-aggregation {
+    position: relative;
+    z-index: 10; /* 确保在内容上方但不覆盖导航 */
+}
+/* 搜索建议列表样式 */
+#searchSuggest {
+    scrollbar-width: thin;
+}
+#searchSuggest > div:hover {
+    color: #c4b5fd; /* hover时文字变色，贴合紫色主题 */
+}
+/* 搜索框响应式调整 */
+@media (max-width: 768px) {
+    .search-aggregation .flex {
+        flex-direction: column;
+    }
+    .search-aggregation .w-full.md:w-40,
+    .search-aggregation .w-full.md:w-24 {
+        width: 100%;
+    }
+    .search-aggregation h3 {
+        font-size: base;
+    }
+}
+/* 搜索引擎标签样式优化 */
+.search-aggregation button.text-xs {
+    border: 1px solid transparent;
+}
+.search-aggregation button.text-xs:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* 水流动态渐变Banner */
+.flow-gradient-banner {
+    width: 100%;
+    height: 70px; /* 减小到原来的1/3 */
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+}
+
+/* 基础渐变背景 */
+.flow-gradient-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #6366f1, #1e40af, #7e22ce, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    z-index: 1;
+}
+
+/* 水流效果层 */
+.flow-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(99, 102, 241, 0.3) 0%, 
+        rgba(30, 64, 175, 0.3) 25%, 
+        rgba(126, 34, 206, 0.3) 50%, 
+        rgba(30, 58, 138, 0.3) 75%, 
+        rgba(99, 102, 241, 0.3) 100%);
+    background-size: 400% 400%;
+    animation: gradientFlow 12s ease infinite reverse;
+    z-index: 2;
+    opacity: 0.7;
+}
+
+/* Banner内容 */
+.flow-content {
+    position: relative;
+    text-align: center;
+    z-index: 3;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row; /* 改为行排列 */
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* 文字容器 */
+.banner-text-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 左右文字间距 */
+}
+
+.banner-title {
+    font-size: 1.8rem; /* 左边大文字 */
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+}
+
+.banner-subtitle {
+    font-size: 1rem; /* 右边小文字 */
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    max-width: 400px; /* 限制宽度避免过长 */
+}
+
+/* 水流动画 */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 随机波纹容器 */
+.ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* 随机波纹效果 */
+.water-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: rippleExpand 5s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes rippleExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .flow-gradient-banner {
+        height: 60px; /* 移动端进一步减小高度 */
+        margin: 10px 0;
+    }
+    
+    .banner-text-container {
+        flex-direction: column; /* 移动端改为垂直排列 */
+        gap: 5px;
+    }
+    
+    .banner-title {
+        font-size: 1.4rem;
+    }
+    
+    .banner-subtitle {
+        font-size: 0.8rem;
+        max-width: 90%; /* 移动端增加宽度限制 */
+    }
+}
+/* 左侧导航栏版权和备案信息样式 */
+.sidebar-copyright {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+    text-align: center;
+}
+
+.sidebar-copyright p {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sidebar-copyright p:first-child {
+    margin-bottom: 4px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .sidebar-copyright p {
+        font-size: 0.7rem;
+    }
+}
+
+/* 右侧内容区底部留白 */
+main.flex-1 {
+    padding-bottom: 8rem; /* 基础内边距 */
+}
+
+/* 底部占位元素样式 */
+.bottom-spacer {
+    height: 8rem; /* 3rem约等于4.8cm */
+}
+
+@media (min-width: 768px) {
+    .bottom-spacer {
+        height: 8rem; /* 5rem约等于8cm */
+    }
+}
