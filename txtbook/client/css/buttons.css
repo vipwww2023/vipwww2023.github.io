@@ -1,0 +1,161 @@
+@charset "UTF-8";
+#darkmode-toggle {
+    display: none;
+}
+
+#darkmode-toggle-btn label {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--darkMode_animation);
+}
+
+#darkmode-toggle-btn {
+    visibility: hidden;
+}
+
+#darkmode-toggle-btn label:focus-visible {
+    outline: none;
+}
+
+.btn-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--darkMode_animation);
+}
+
+svg.icon-nofill {
+    width: var(--ui_btnSize);
+    height: var(--ui_btnSize);
+    stroke: var(--fontInfoColor);
+    fill: none;
+}
+
+svg.icon {
+    width: var(--ui_btnSize);
+    height: var(--ui_btnSize);
+    stroke: var(--fontInfoColor);
+    fill: var(--fontInfoColor);
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: var(--ui_btnSize);
+    -webkit-transform: translateY(var(--ui_btnSize)) rotate(90deg);
+    transform: translateY(var(--ui_btnSize)) rotate(90deg);
+    user-select: none;
+    color: var(--mainColor_active);
+    transition: var(--darkMode_animation);
+    bottom: 0px;
+    right: 0px;
+    overflow-y: unset;
+}
+
+#darkmode-toggle:checked ~ #darkmode-toggle-btn {
+    transition: var(--darkMode_animation);
+}
+
+#darkmode-toggle:checked ~ #darkmode-toggle-btn label .icons {
+    -webkit-transform: translateX(calc(-1 * var(--ui_btnSize)));
+    transform: translateX(calc(-1 * var(--ui_btnSize)));
+}
+
+#darkmode-toggle:hover ~ #darkmode-toggle-btn label .icons .tofill,
+.btn-icon:hover:not(:focus) svg .tofill {
+    fill: var(--mainColor_inactive);
+    stroke: var(--mainColor_inactive);
+    opacity: 1;
+}
+
+#darkmode-toggle:hover ~ #darkmode-toggle-btn label .icons .tofill-inverse,
+.btn-icon:hover:not(:focus) svg .tofill-inverse {
+    /* fill: var(--bgColor); */
+    stroke: var(--bgColor);
+    opacity: 1;
+}
+
+#darkmode-toggle:hover ~ #darkmode-toggle-btn label .icons,
+.btn-icon:hover:not(:focus) svg {
+    --icon-fill: var(--mainColor_inactive);
+    --icon-stroke: var(--mainColor_inactive);
+}
+
+.btn-icon:focus {
+    background: var(--mainColor_active);
+    stroke: var(--bgColor);
+    --icon-stroke: var(--bgColor);
+}
+
+.btn-icon:focus-visible {
+    background: var(--mainColor_active);
+    outline: none;
+    stroke: var(--bgColor);
+}
+
+.btn-icon:focus svg .tofill {
+    fill: var(--bgColor);
+    stroke: var(--bgColor);
+    --icon-fill: var(--bgColor);
+    --icon-stroke: var(--bgColor);
+}
+
+.btn-icon:focus svg .tofill-inverse {
+    /* fill: var(--mainColor_active); */
+    stroke: var(--mainColor_active);
+    /* --icon-fill: var(--mainColor_active); */
+    --icon-stroke: var(--mainColor_active);
+}
+
+#darkmode-toggle:hover ~ #darkmode-toggle-btn label,
+.btn-icon:hover:not(:focus) {
+    /* light mode */
+    background: var(--btnHoverColor);
+}
+
+.main-btn-group {
+    display: flex;
+    flex-flow: column;
+    gap: var(--ui_btnGap);
+    position: fixed;
+    bottom: calc(var(--ui_btnGap) + var(--ui_scrollBarWidth));
+    right: calc(var(--ui_btnGap) + var(--ui_scrollBarWidth) + var(--ui_btnOffset));
+    z-index: 1005;
+}
+
+.bookshelf-btn-group {
+    display: flex;
+    flex-flow: column;
+    gap: var(--ui_btnGap);
+    position: fixed;
+    bottom: calc(var(--ui_btnGap) + var(--ui_scrollBarWidth));
+    left: calc(var(--ui_btnGap) + var(--ui_scrollBarWidth) + var(--ui_btnOffset));
+    z-index: 1005;
+}
+
+svg .tofill {
+    stroke-dasharray: var(--ui_svgPathLength);
+    stroke-dashoffset: var(--ui_svgPathLength);
+    animation: stroke 2s forwards;
+}
+svg .tofill-inverse {
+    stroke-dasharray: var(--ui_svgPathLength);
+    stroke-dashoffset: var(--ui_svgPathLength);
+    animation: stroke 2s forwards;
+}
+@keyframes stroke {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
